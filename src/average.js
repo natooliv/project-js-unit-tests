@@ -22,7 +22,7 @@ const average = (numb) => {
     }
     soma += numb[index];
   }
-  const media = Math.round(soma / numb.length); // pesquisar
+  const media = Math.round(soma / numb.length); 
   return media;
 };
 
