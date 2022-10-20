@@ -93,6 +93,34 @@
 // - retornará o valor somado acrescido de 10%.
 // DICA: para isso, você precisará percorrer tanto o objeto da chave `food` quanto o objeto da chave `drink`.
 
-const createMenu = () => {};
+const createMenu = (objeto) => {
+  const objetoVazio = {};
+  Object.assign(objetoVazio, {
+
+    fetchMenu: () => objeto,
+    consumption: [],
+    order: (pedidoRecebido) => objetoVazio.consumption.push(pedidoRecebido),
+    pay: () => {
+      let total = 0;
+      const { food, drink } = objeto; // desestruturou de objeto;
+      const { consumption } = objetoVazio;
+      const comida = Object.entries(food);
+      const bebida = Object.entries(drink);
+      const pedido = [...comida, ...bebida];// 'espalhando as coisas dentro do array'.
+      consumption.forEach((e) => { // o que a pessoa pediu
+        pedido.forEach((e2) => { // o que a pessoa gastou
+          if (e === e2[0]) { // verifica a comida e bebida
+            total += (e2[1] * 1.1); // verifica 10%
+          }
+        });
+      });
+      return total;
+    },
+
+  });
+  return objetoVazio;
+};
+// https://www.w3schools.com/jsref/jsref_foreach.asp //
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
 
 module.exports = createMenu;
